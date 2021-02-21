@@ -12,5 +12,4 @@ public abstract class GamePiece implements IPrintable {
         }
         return true;
     }
-
 }
