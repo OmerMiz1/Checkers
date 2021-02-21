@@ -1,7 +1,7 @@
 import java.awt.*;
 
-public interface ICheckersLogic {
-    Move[] getPossibleMoves(Board board);
+public interface ILogic {
+    Move[] getPossibleMoves(Move[] moves);
     void performMove(Board board, Move move);
     Color getWinner(Board board);
 }
