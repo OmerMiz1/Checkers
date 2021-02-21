@@ -1,15 +1,26 @@
 import java.util.ArrayList;
 
 public abstract class CheckersBuilder {
+    private Checkers game;
     private Board board;
-    private ICheckersLogic logic;
+    private ILogic logic;
     private ArrayList<IPlayer> players;
 
     public Checkers getGame(){
-        return null; // TODO: 21/02/2021
+        return this.game;
     }
 
-    public void setPlayer(String name, IPlayer player) {
-        this.players.add(player); // TODO: 21/02/2021 name??
+    public void createNewCheckers() {
+        game = new Checkers(this.board , this.logic, this.players);
     }
+
+    public void setPlayer(ArrayList<IPlayer> players)
+    {
+        this.players = players;
+    }
+
+    public abstract void buildBoard();
+
+    public abstract void buildLogic();
+
 }
