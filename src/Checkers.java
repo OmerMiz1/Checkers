@@ -4,7 +4,7 @@ import java.awt.*;
 
 public class Checkers {
     private Board board;
-    private ICheckersLogic logic;
+    private ILogic logic;
     private IPlayer[] players;
     private Color currentTurn;
 
