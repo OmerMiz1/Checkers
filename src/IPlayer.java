@@ -1,15 +1,13 @@
-import java.awt.*;
-
 abstract class IPlayer {
     private String name;
-    private Color color = null;
+    public Enum<Color> color = null;
     private int moveTime = 0;
 
     public IPlayer(String name){
         this.name = name;
     }
 
-    public void setColor(Color color) {
+    public void setColor(Enum<Color> color) {
         this.color = color;
     }
 
@@ -17,7 +15,7 @@ abstract class IPlayer {
         this.moveTime = moveTime;
     }
 
-    public Color getColor() {
+    public Enum<Color> getColor() {
         return color;
     }
 
