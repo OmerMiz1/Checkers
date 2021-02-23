@@ -2,8 +2,8 @@ import java.util.ArrayList;
 
 public abstract class CheckersBuilder {
     private Checkers game;
-    private Board board;
-    private ILogic logic;
+    protected Board board;
+    protected ILogic logic;
     private ArrayList<IPlayer> players;
 
     public Checkers getGame(){

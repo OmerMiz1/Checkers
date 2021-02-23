@@ -1,3 +1,4 @@
+
 public class ClassicBuilder extends CheckersBuilder{
 
     @Override
@@ -32,10 +33,11 @@ public class ClassicBuilder extends CheckersBuilder{
 
         gameBoard.setBlackPieces(12);
         gameBoard.setWhitePieces(12);
+        super.board = gameBoard;
     }
 
     @Override
     public void buildLogic() {
-
+        super.logic = new Classic();
     }
 }

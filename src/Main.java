@@ -14,12 +14,7 @@ public class Main {
         checkersDirector.constructGame("shon", "omer");
         Checkers checkers = checkersDirector.getCheckers();
 
-
-
-
-
-
-
+        checkers.run();
     }
 
 }

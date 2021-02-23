@@ -20,6 +20,7 @@ public class CheckersDirector{
         builder.setPlayer(checkerModeFactory.getPlayers(name1, name2));
         builder.buildBoard();
         builder.buildLogic();
+        builder.createNewCheckers();
     }
 
 }
