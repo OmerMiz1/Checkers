@@ -1,8 +1,12 @@
 import java.awt.*;
 
 public abstract class GamePiece implements IPrintable {
-    Color color;
+    Enum<Color> color;
     IPrinter printer;
+
+    public GamePiece(Enum<Color> color) {
+        this.color = color;
+    }
 
     public abstract Move[] getMoves(Point location, int limit);
     public void print() {} // TODO: param IPrinter printer, printer.accept(this)

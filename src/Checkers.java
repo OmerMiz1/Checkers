@@ -7,14 +7,21 @@ public class Checkers {
     private Board board;
     private ILogic logic;
     private ArrayList<IPlayer> players;
-    private Color currentTurn;
+    private Enum<Color> currentTurn;
 
 
     public Checkers(Board board, ILogic logic, ArrayList<IPlayer> players) {
         this.board = board;
         this.logic = logic;
         this.players = players;
-        this.currentTurn = new Color("white");
+        this.currentTurn = Color.white;
+    }
+
+    public void changeTurn() {
+        if (this.currentTurn.equals(Color.white))
+            this.currentTurn = Color.black;
+        else
+            this.currentTurn = Color.white;
     }
 
     public void run() {
