@@ -1,18 +1,26 @@
-public abstract class CheckersDirector{
-    CheckersDirector builder;
+import java.util.ArrayList;
 
-    public CheckersDirector(String name1, String name2) {
-        // TODO: 21/02/2021
-    }
+/** Director **/
+public class CheckersDirector{
+    private CheckersBuilder builder;
 
+    // Set builder
     public void setBuilder(CheckersBuilder builder) {
-
+        this.builder = builder;
     }
 
     public Checkers getCheckers() {
-        return null; // TODO: 21/02/2021
+        return builder.getGame();
     }
 
-    public abstract void constructGame();
+    public void constructGame(String name1, String name2) {
+        // Prepares checkerModeFactory to create the players who play
+        // todo Maybe take out so he does not contain the checkerModeFactory
+        CheckerModeFactory checkerModeFactory = new CheckerModeFactory();
+        builder.setPlayer(checkerModeFactory.getPlayers(name1, name2));
+        builder.buildBoard();
+        builder.buildLogic();
+        builder.createNewCheckers();
+    }
 
 }

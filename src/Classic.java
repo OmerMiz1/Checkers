@@ -15,7 +15,7 @@ public class Classic implements ILogic{
     }
 
     @Override
-    public Color getWinner(Board board) {
+    public Enum<Color> getWinner(Board board) {
         throw new NotImplementedException();
     }
 }

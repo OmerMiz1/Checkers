@@ -1,2 +1,2 @@
-public class Turkish {
+public class Turkish{
 }
