@@ -15,7 +15,6 @@ public class Board implements IPrintable{
     GamePiece[][] board;
     IPrinter printer;
 
-
     public Board(int rowsSize, int colsSize) {
         this.rows = rowsSize;
         this.cols = colsSize;
@@ -38,6 +37,7 @@ public class Board implements IPrintable{
         this.whitePieces = whitePieces;
     }
 
+    // Todo accurate
     public int getWhitePieces() {
         return whitePieces;
     }
@@ -47,6 +47,8 @@ public class Board implements IPrintable{
     }
 
     public void getAllMoves(IPlayer player) {
+        throw new NotImplementedException();
+
         ArrayList<Move> moves = new ArrayList<>();
         GamePiece piece;
         for (int row = 0; row < board.length; ++row) {

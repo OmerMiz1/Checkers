@@ -4,7 +4,6 @@ import java.util.ArrayList;
 public class CheckersDirector{
     private CheckersBuilder builder;
 
-    // Set builder
     public void setBuilder(CheckersBuilder builder) {
         this.builder = builder;
     }
@@ -17,10 +16,9 @@ public class CheckersDirector{
         // Prepares checkerModeFactory to create the players who play
         // todo Maybe take out so he does not contain the checkerModeFactory
         CheckerModeFactory checkerModeFactory = new CheckerModeFactory();
-        builder.setPlayer(checkerModeFactory.getPlayers(name1, name2));
+        builder.setPlayer(checkerModeFactory.getPlayers(name1, name2)); // TODO add parameters <type1, type2>
         builder.buildBoard();
         builder.buildLogic();
         builder.createNewCheckers();
     }
-
 }

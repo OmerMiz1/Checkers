@@ -6,6 +6,7 @@ public class Main {
 
         // Creating a factory that prepares builders
         CheckerBuilderFactory checkersBuilderFactory = new CheckerBuilderFactory();
+        // TODO print menu + read input from user.
         CheckersBuilder checkersBuilder = checkersBuilderFactory.checkersBuilder("classic_builder");
 
         // Creating a CheckersDirector and than create game (checkers)

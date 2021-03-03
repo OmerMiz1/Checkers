@@ -1,7 +1,7 @@
-import java.awt.*;
+import Consts.Color;
 
 public abstract class GamePiece implements IPrintable {
-    Enum<Color> color;
+    Color color;
     IPrinter printer;
 
     public GamePiece(Enum<Color> color) {

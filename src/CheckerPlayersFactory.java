@@ -1,7 +1,10 @@
 import java.util.ArrayList;
 
+
+
 public class CheckerModeFactory {
 
+    // TODO add parameter Consts (enum)
     public ArrayList<IPlayer> getPlayers(String name1, String name2) {
         ArrayList<IPlayer> players = new ArrayList<>();
         IPlayer player1 = new HumanPlayer(name1);
