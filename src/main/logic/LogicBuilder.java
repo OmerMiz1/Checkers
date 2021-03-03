@@ -1,20 +1,26 @@
+package main.logic;
+
+import main.Board;
+import main.Checkers;
+import main.players.AbstractPlayer;
+
 import java.util.ArrayList;
 
-public abstract class CheckersBuilder {
+public abstract class LogicBuilder {
     private Checkers game;
     protected Board board;
     protected ILogic logic;
-    private ArrayList<IPlayer> players;
+    private ArrayList<AbstractPlayer> players;
 
     public Checkers getGame(){
         return this.game;
     }
 
-    public void createNewCheckers() {
+    public void createNewGame() {
         game = new Checkers(this.board , this.logic, this.players);
     }
 
-    public void setPlayer(ArrayList<IPlayer> players)
+    public void setPlayers(ArrayList<AbstractPlayer> players)
     {
         this.players = players;
     }

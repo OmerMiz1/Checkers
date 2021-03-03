@@ -1,4 +1,6 @@
-public class TurkishBuilder extends CheckersBuilder{
+package main.logic;
+
+public class TurkishBuilder extends LogicBuilder {
     @Override
     public void buildBoard() {
 
