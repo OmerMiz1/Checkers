@@ -22,7 +22,7 @@ public class ClassicBuilder extends LogicBuilder {
             }
 
             //Switch starting color for next row
-            // isDarkCell = !isDarkCell; // TODO: remove? should be changed after every cell
+             isDarkCell = !isDarkCell;
         }
 
         // Black Pawns (rows 5-7, (5, 1) is first pawn)
@@ -34,8 +34,9 @@ public class ClassicBuilder extends LogicBuilder {
                 //Toggle lastColor
                 isDarkCell = !isDarkCell;
             }
+
             //Switch starting color for next row
-            // isDarkCell = !isDarkCell; // TODO: same
+             isDarkCell = !isDarkCell;
         }
 
         gameBoard.setRedPiecesCount(12);
