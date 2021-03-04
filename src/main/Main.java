@@ -1,12 +1,16 @@
 package main;
 
+import main.IO.ConsolePrinter;
+import main.IO.IPrinter;
 import main.consts.PlayerType;
 import main.logic.BuilderFactory;
 import main.logic.LogicBuilder;
+import main.menus.IMenu;
+import main.menus.MainMenu;
 
 public class Main {
-
     public static void main(String[] args) {
+
         // TODO create menu
         // TODO print menus
         // TODO read input from user
@@ -27,6 +31,10 @@ public class Main {
         Checkers checkers = checkersDirector.getGame();
 
         checkers.run();
-    }
 
+
+//        IPrinter printer = new ConsolePrinter();
+//        IMenu menu = new MainMenu();
+//        menu.start(printer);
+    }
 }

@@ -1,16 +1,21 @@
 package main.menus;
 
-import main.IPrintable;
-import main.IPrinter;
-
-import java.util.HashMap;
-import java.util.function.Function;
+import main.IO.IPrintable;
+import main.IO.IPrinter;
 
 public interface IMenu extends IPrintable {
-    String[] options = null;
-    HashMap<String, Function> operations = null;
+    void showMenu(IPrinter printer);
+    void readInput(IPrinter printer);
+    void execute();
+    boolean validInput();
+    boolean isRunning();
 
-    default void accept(IPrinter printer) {
-        printer.print(this);
+    default void start(IPrinter printer) {
+        while(isRunning()) {
+            showMenu(printer);
+            readInput(printer);
+            if(validInput())
+                execute();
+        }
     }
 }

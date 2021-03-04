@@ -1,7 +1,7 @@
 package main.gamePieces;
 
 import main.consts.PlayerColor;
-import main.IPrinter;
+import main.IO.IPrinter;
 import java.awt.Point;
 import java.util.ArrayList;
 
@@ -10,7 +10,6 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 // NOTES:
 // Red starts
 // Red = UP, White = DOWN
-
 public class Pawn extends GamePiece {
     // Not intuitive therefore used finals
     protected final int DOWN = 1;

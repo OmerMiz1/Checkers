@@ -1,8 +1,8 @@
 package main.gamePieces;
 
 import main.consts.PlayerColor;
-import main.IPrinter;
-import main.IPrintable;
+import main.IO.IPrinter;
+import main.IO.IPrintable;
 
 import java.awt.Point;
 import java.util.ArrayList;
@@ -12,11 +12,6 @@ public abstract class GamePiece implements IPrintable {
 
     protected GamePiece(PlayerColor color) {
         this.color = color;
-    }
-
-    @Override
-    public void accept(IPrinter printer) {
-        printer.print(this);
     }
 
     public abstract ArrayList<Point> getMoves(Point location, int limit);

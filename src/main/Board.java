@@ -1,9 +1,9 @@
 package main;// https://github.com/AshishPrasad/Checkers/blob/master/checkers/Board.java
 
+import main.IO.IPrintable;
+import main.IO.IPrinter;
 import main.consts.PlayerColor;
 import main.gamePieces.GamePiece;
-import main.players.AbstractPlayer;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.awt.Point;
 import java.util.ArrayList;
@@ -58,11 +58,6 @@ public class Board implements IPrintable {
     public void move(Point src, Point dst) {
         board[dst.x][dst.y] = at(src);
         remove(src);
-    }
-
-    @Override
-    public void accept(IPrinter printer) {
-        printer.print(this);
     }
 
     public GamePiece at(Point p) {

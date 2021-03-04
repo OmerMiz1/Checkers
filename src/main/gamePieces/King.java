@@ -1,7 +1,7 @@
 package main.gamePieces;
 
 import main.consts.PlayerColor;
-import main.IPrinter;
+import main.IO.IPrinter;
 
 import java.util.ArrayList;
 import java.awt.Point;
