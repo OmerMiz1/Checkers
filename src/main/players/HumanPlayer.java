@@ -2,6 +2,7 @@ package main.players;
 
 import main.Board;
 import main.Move;
+import main.UI.UIVisitor;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 public class HumanPlayer extends AbstractPlayer {

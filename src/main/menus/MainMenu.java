@@ -1,17 +1,21 @@
 package main.menus;
 
-
-import main.IO.IPrinter;
+import main.UI.UIVisitor;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class MainMenu implements IMenu {
-    private enum Option {StartGame, Stats, Exit}
+
+
+    private enum Option {
+        StartGame,
+        Stats,
+        Exit;
+    }
     private static String header;
     private static String footer;
     private Map<Option, String> options;
-
     public MainMenu() {
         options = new HashMap<>();
         options.put(Option.StartGame, "Start Game");
@@ -23,14 +27,12 @@ public class MainMenu implements IMenu {
     }
 
 
-    // Exactly like 'accept', but more understood.
     @Override
-    public void showMenu(IPrinter printer) {
-        printer.visit(this);
-    }
+    public void showMenu() {
 
+    }
     @Override
-    public void readInput(IPrinter printer) {
+    public void readInput() {
 
     }
 
@@ -47,6 +49,11 @@ public class MainMenu implements IMenu {
     @Override
     public boolean isRunning() {
         return true;
+    }
+
+    @Override
+    public void accept(UIVisitor visitor) {
+        visitor.visit(this);
     }
 
 //    @Override

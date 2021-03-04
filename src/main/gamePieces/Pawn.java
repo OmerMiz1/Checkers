@@ -1,7 +1,8 @@
 package main.gamePieces;
 
+import main.UI.UIObject;
+import main.UI.UIVisitor;
 import main.consts.PlayerColor;
-import main.IO.IPrinter;
 import java.awt.Point;
 import java.util.ArrayList;
 
@@ -12,8 +13,8 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 // Red = UP, White = DOWN
 public class Pawn extends GamePiece {
     // Not intuitive therefore used finals
-    protected final int DOWN = 1;
-    protected final int UP = -1;
+    protected static final int DOWN = 1;
+    protected static final int UP = -1;
 
     public Pawn(PlayerColor color) {
         super(color);
@@ -42,11 +43,6 @@ public class Pawn extends GamePiece {
         return moves;
     }
 
-    @Override
-    public void accept(IPrinter printer) {
-        throw new NotImplementedException();
-    }
-
     protected Point topLeft(Point p) {
         return new Point(p.x - 1, p.y + UP);
     }
@@ -62,4 +58,14 @@ public class Pawn extends GamePiece {
     protected Point bottomRight(Point p) {
         return new Point(p.x + 1, p.y + DOWN);
     }
+
+    @Override
+    public void accept(UIVisitor visitor) {
+        visitor.visit(this);
+    }
+//
+//    @Override
+//    public void accept(UIVisitor visitor) {
+//        visitor.visit(this);
+//    }
 }

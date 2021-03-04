@@ -1,15 +1,16 @@
 package main.menus;
 
-import main.IO.IPrinter;
+
+import main.UI.UIVisitor;
 
 public class ModeSelectMenu implements IMenu {
     @Override
-    public void showMenu(IPrinter printer) {
+    public void showMenu() {
 
     }
 
     @Override
-    public void readInput(IPrinter printer) {
+    public void readInput() {
 
     }
 
@@ -26,5 +27,10 @@ public class ModeSelectMenu implements IMenu {
     @Override
     public boolean isRunning() {
         return true;
+    }
+
+    @Override
+    public void accept(UIVisitor visitor) {
+        visitor.visit(this);
     }
 }

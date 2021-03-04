@@ -5,6 +5,7 @@ import main.consts.PlayerColor;
 import java.awt.*;
 import java.util.ArrayList;
 
+// TODO consider Overriding "accept"
 public class TurkishKing extends King {
     public TurkishKing(PlayerColor color) {
         super(color);

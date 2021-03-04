@@ -1,15 +1,17 @@
 package main;
 
-import main.IO.ConsolePrinter;
-import main.IO.IPrinter;
+import main.UI.ConsolePrinter;
+import main.UI.UIVisitor;
 import main.consts.PlayerType;
 import main.logic.BuilderFactory;
 import main.logic.LogicBuilder;
-import main.menus.IMenu;
-import main.menus.MainMenu;
+
+import java.awt.*;
 
 public class Main {
     public static void main(String[] args) {
+        Point p1 = new Point(0,0);
+        Point p2 = new Point(1,1);
 
         // TODO create menu
         // TODO print menus
@@ -18,6 +20,9 @@ public class Main {
         // MOCKS:
         String[] names = {"shon", "omer"};
         PlayerType[] types = {PlayerType.HUMAN, PlayerType.HUMAN};
+
+        UIVisitor printer = new ConsolePrinter();
+
 
         // Creating a factory that prepares builders
         BuilderFactory checkersBuilderFactory = new BuilderFactory();
@@ -29,12 +34,17 @@ public class Main {
         checkersDirector.setBuilder(checkersBuilder);
         checkersDirector.constructGame(names, types);
         Checkers checkers = checkersDirector.getGame();
-
+        checkers.board.accept(printer);
         checkers.run();
 
 
 //        IPrinter printer = new ConsolePrinter();
 //        IMenu menu = new MainMenu();
 //        menu.start(printer);
+    }
+
+    // TODO remove
+    private static String pointToString(Point p) {
+        return String.format("(%d, %d)", p.x, p.y);
     }
 }

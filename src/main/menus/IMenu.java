@@ -1,19 +1,18 @@
 package main.menus;
 
-import main.IO.IPrintable;
-import main.IO.IPrinter;
+import main.UI.UIObject;
 
-public interface IMenu extends IPrintable {
-    void showMenu(IPrinter printer);
-    void readInput(IPrinter printer);
+public interface IMenu extends UIObject {
+    void showMenu();
+    void readInput();
     void execute();
     boolean validInput();
     boolean isRunning();
 
-    default void start(IPrinter printer) {
+    default void start() {
         while(isRunning()) {
-            showMenu(printer);
-            readInput(printer);
+            showMenu();
+            readInput();
             if(validInput())
                 execute();
         }

@@ -1,0 +1,24 @@
+package main.UI;
+
+import main.Board;
+import main.Move;
+import main.gamePieces.King;
+import main.gamePieces.Pawn;
+import main.gamePieces.TurkishKing;
+import main.menus.MainMenu;
+import main.menus.ModeSelectMenu;
+import main.players.AbstractPlayer;
+
+public interface UIVisitor {
+    default void visit(UIObject object) {
+        object.accept(this);
+    }
+    void visit(Board board);
+    void visit(Pawn pawn);
+    void visit(King king);
+    void visit(TurkishKing turkishKing);
+    void visit(MainMenu mainMenu);
+    void visit(ModeSelectMenu modeSelectMenu);
+    void visit(Move move);
+    void visit(AbstractPlayer player);
+}

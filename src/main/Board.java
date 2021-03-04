@@ -1,15 +1,14 @@
 package main;// https://github.com/AshishPrasad/Checkers/blob/master/checkers/Board.java
 
-import main.IO.IPrintable;
-import main.IO.IPrinter;
+import main.UI.UIObject;
+import main.UI.UIVisitor;
 import main.consts.PlayerColor;
 import main.gamePieces.GamePiece;
 
 import java.awt.Point;
 import java.util.ArrayList;
 
-public class Board implements IPrintable {
-
+public class Board implements UIObject {
     private int size;
 
     private int redPiecesCount;
@@ -88,5 +87,14 @@ public class Board implements IPrintable {
         return whitePiecesCount;
     }
 
+    @Override
+    public void accept(UIVisitor visitor) {
+        visitor.visit(this);
+    }
 
+//
+//    @Override
+//    public void accept(UIVisitor visitor) {
+//        visitor.visit(this);
+//    }
 }

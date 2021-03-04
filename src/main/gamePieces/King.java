@@ -1,12 +1,11 @@
 package main.gamePieces;
 
 import main.consts.PlayerColor;
-import main.IO.IPrinter;
 
 import java.util.ArrayList;
 import java.awt.Point;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
+// TODO consider Overriding "accept"
 public class King extends Pawn {
 
     public King(PlayerColor color) {
@@ -37,10 +36,5 @@ public class King extends Pawn {
         }
 
         return moves;
-    }
-
-    @Override
-    public void accept(IPrinter printer) {
-        throw new NotImplementedException();
     }
 }

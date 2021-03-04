@@ -8,7 +8,7 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 import java.util.ArrayList;
 
 public class Checkers {
-    private Board board;
+    public Board board;
     private ILogic logic;
     private ArrayList<AbstractPlayer> players;
     private PlayerColor curTurn;
@@ -40,7 +40,7 @@ public class Checkers {
     }
 
     public void announceWinner() {
-        // TODO The Printer should do the printing to user,
+        // TODO The UIPrinter should do the printing to user,
         //  checkers should only generate the message (?!)
         //  Maybe just add "Game Over" menu that does that?
         throw new NotImplementedException();
