@@ -1,7 +1,7 @@
 package main.menus;
 
 public class MainMenu implements IMenu{
-    public void print() {
-
-    }
+    static String header = "";
+    static String options;
+    static String footer = "";
 }

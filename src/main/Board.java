@@ -16,7 +16,6 @@ public class Board implements IPrintable {
     private int whitePiecesCount;
 
     private GamePiece[][] board;
-    private IPrinter printer;
 
     public Board(int size) {
         this.size = size;
@@ -63,7 +62,7 @@ public class Board implements IPrintable {
 
     @Override
     public void accept(IPrinter printer) {
-        throw new NotImplementedException();
+        printer.print(this);
     }
 
     public GamePiece at(Point p) {

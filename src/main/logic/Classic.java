@@ -21,6 +21,7 @@ public class Classic implements ILogic {
 
         for(Move move : moves) {
             PlayerColor c1, c2 = null;
+            Point newDst;
             c1 = board.at(move.getSrc()).getColor();
             GamePiece tmp = board.at(move.getDst());
 
@@ -31,10 +32,14 @@ public class Classic implements ILogic {
             if(c2 == null) { // Empty cell
                 filteredMoves.add(move);
             } else if (c1 != c2) { // Enemy
-                hasJumps = true;
-                move.isJump = true;
-                move.dst = destAfterJump(move.getSrc(), move.getDst());
-                filteredMoves.add(move);
+                newDst = destAfterJump(move.getSrc(), move.getDst());
+                if(board.at(newDst) == null || board.at(newDst).getColor() == null) { // Jump loc is empty
+                    move.dst = newDst;
+                    hasJumps = true;
+                    move.isJump = true;
+                    filteredMoves.add(move);
+                }
+
             }
         }
 
