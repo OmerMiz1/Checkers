@@ -1,6 +1,7 @@
 package main.UI;
 
 import main.Board;
+import main.Massage;
 import main.Move;
 import main.consts.PlayerColor;
 import main.gamePieces.King;
@@ -73,17 +74,22 @@ public class ConsolePrinter extends UIPrinter {
 
     @Override
     public void visit(Move move) {
-        System.out.printf("Move from %s to %s", pointToString(move.getSrc()), pointToString(move.dst));
+        System.out.printf("\tMove from %s to %s\n", pointToString(move.getSrc()), pointToString(move.dst));
     }
 
     @Override
     public void visit(AbstractPlayer player) {
-        throw new NotImplementedException();
+        System.out.printf("%s (%s) ",player.name, player.color );
+    }
+
+    @Override
+    public void visit(Massage massage) {
+        System.out.print(massage.getText());
     }
 
     /* Helper Functions */
     private String pointToString(Point p) {
-        return String.format("(%d, %d)", p.x, p.y);
+        return String.format("(%s, %d)", String.valueOf((char)(p.x + 65)), p.y+1);
     }
     private void printPiece(PlayerColor color, String pieceStr) {
         if(color == PlayerColor.RED) {

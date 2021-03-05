@@ -3,6 +3,7 @@ package main.logic;
 import main.Board;
 import main.Move;
 import main.consts.PlayerColor;
+
 import java.util.ArrayList;
 
 public interface ILogic {

@@ -5,6 +5,8 @@ import main.UI.UIVisitor;
 import main.consts.PlayerType;
 import main.logic.BuilderFactory;
 import main.logic.LogicBuilder;
+import main.menus.IMenu;
+import main.menus.MainMenu;
 
 import java.awt.*;
 
@@ -19,7 +21,7 @@ public class Main {
 
         // MOCKS:
         String[] names = {"shon", "omer"};
-        PlayerType[] types = {PlayerType.HUMAN, PlayerType.HUMAN};
+        PlayerType[] types = {PlayerType.HUMAN, PlayerType.COMPUTER_EASY};
 
         UIVisitor printer = new ConsolePrinter();
 
@@ -34,8 +36,7 @@ public class Main {
         checkersDirector.setBuilder(checkersBuilder);
         checkersDirector.constructGame(names, types);
         Checkers checkers = checkersDirector.getGame();
-        checkers.board.accept(printer);
-        checkers.run();
+        checkers.run(printer);
 
 
 //        IPrinter printer = new ConsolePrinter();

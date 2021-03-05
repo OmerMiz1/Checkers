@@ -1,6 +1,7 @@
 package main.UI;
 
 import main.Board;
+import main.Massage;
 import main.Move;
 import main.gamePieces.King;
 import main.gamePieces.Pawn;
@@ -50,4 +51,10 @@ public class ConsoleScanner extends UIScanner {
     public void visit(AbstractPlayer player) {
 
     }
+
+    @Override
+    public void visit(Massage massage) {
+
+    }
+
 }

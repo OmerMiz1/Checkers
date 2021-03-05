@@ -14,6 +14,7 @@ public class Classic implements ILogic {
 
     private int movesNoJumpCount = 0;
 
+    // Todo add multiJump
     @Override
     public ArrayList<Move> filterMoves(Board board, ArrayList<Move> moves) {
         ArrayList<Move> filteredMoves = new ArrayList<>();
@@ -33,10 +34,13 @@ public class Classic implements ILogic {
                 filteredMoves.add(move);
             } else if (c1 != c2) { // Enemy
                 newDst = destAfterJump(move.getSrc(), move.getDst());
+                if (newDst == null)
+                    continue;
+
                 if(board.at(newDst) == null || board.at(newDst).getColor() == null) { // Jump loc is empty
+                    move.isJump.add(move.dst);
                     move.dst = newDst;
                     hasJumps = true;
-                    move.isJump = true;
                     filteredMoves.add(move);
                 }
 
@@ -44,7 +48,7 @@ public class Classic implements ILogic {
         }
 
         if(hasJumps) { // Remove non-jumps options
-            filteredMoves.removeIf(move -> !move.isJump);
+            filteredMoves.removeIf(move -> move.isJump.isEmpty());
         }
 
         return filteredMoves;
@@ -54,8 +58,9 @@ public class Classic implements ILogic {
     public void performMove(Board board, Move move) {
         GamePiece piece = board.at(move.getSrc());
 
-        if(move.isJump) {
-            board.remove(move.dst);
+        if(!move.isJump.isEmpty()) {
+            for(Point point: move.isJump)
+                board.remove(point);
             movesNoJumpCount = 0;
         } else {
             ++movesNoJumpCount;
@@ -72,7 +77,7 @@ public class Classic implements ILogic {
     @Override
     public PlayerColor getWinner(Board board) {
         if(board.getRedPiecesCount() > 0 && board.getWhitePiecesCount() > 0) { // TIE
-            return null;
+            return PlayerColor.TIE;
         } else if (board.getRedPiecesCount() > 0) {
             return PlayerColor.RED;
         } else {
@@ -90,6 +95,8 @@ public class Classic implements ILogic {
     private Point destAfterJump(Point src, Point dst) {
         int xDir = (src.x < dst.x) ? 1 : -1;
         int yDir = (src.y < dst.y) ? 1 : -1;
+        if (dst.x + xDir > 7 || dst.x + xDir < 0 || dst.y + yDir > 7 || dst.y + yDir < 0)
+            return null;
         return new Point(dst.x + xDir, dst.y + yDir);
     }
 

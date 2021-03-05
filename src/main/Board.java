@@ -1,5 +1,6 @@
 package main;// https://github.com/AshishPrasad/Checkers/blob/master/checkers/Board.java
 
+import com.sun.xml.internal.bind.v2.runtime.reflect.opt.Const;
 import main.UI.UIObject;
 import main.UI.UIVisitor;
 import main.consts.PlayerColor;
@@ -33,7 +34,7 @@ public class Board implements UIObject {
                 if (piece != null && piece.getColor() == color) {
                     ArrayList<Point> curMoves = piece.getMoves(new Point(row, col), size);
                     for(Point dst : curMoves) {
-                        moves.add(new Move(src, dst, false));
+                        moves.add(new Move(src, dst, new ArrayList<>()));
                     }
                 }
             }
@@ -43,6 +44,11 @@ public class Board implements UIObject {
     }
 
     public void remove(Point p) {
+        PlayerColor color = board[p.x][p.y].getColor();
+        if (color == PlayerColor.WHITE)
+            whitePiecesCount -= 1;
+        else
+            redPiecesCount -= 1;
         board[p.x][p.y] = null;
     }
 
@@ -56,7 +62,7 @@ public class Board implements UIObject {
 
     public void move(Point src, Point dst) {
         board[dst.x][dst.y] = at(src);
-        remove(src);
+        board[src.x][src.y] = null;
     }
 
     public GamePiece at(Point p) {

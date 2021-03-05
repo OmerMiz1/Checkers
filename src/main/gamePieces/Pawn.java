@@ -44,19 +44,19 @@ public class Pawn extends GamePiece {
     }
 
     protected Point topLeft(Point p) {
-        return new Point(p.x - 1, p.y + UP);
+        return new Point(p.x + UP, p.y - 1);
     }
 
     protected Point topRight(Point p) {
-        return new Point(p.x + 1, p.y + UP);
+        return new Point(p.x + UP, p.y + 1);
     }
 
     protected Point bottomLeft(Point p) {
-        return new Point(p.x -1, p.y + DOWN);
+        return new Point(p.x + DOWN, p.y - 1);
     }
 
     protected Point bottomRight(Point p) {
-        return new Point(p.x + 1, p.y + DOWN);
+        return new Point(p.x + DOWN, p.y + 1);
     }
 
     @Override

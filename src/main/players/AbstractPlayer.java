@@ -6,12 +6,14 @@ import main.UI.UIObject;
 import main.UI.UIVisitor;
 import main.consts.PlayerColor;
 
+import java.util.ArrayList;
+
 public abstract class AbstractPlayer implements UIObject {
     public String name;
     public PlayerColor color = null;
-    public int moveTime = 0;
+    int moveTime = 0;
 
-    public abstract Move getMove(Board board, Move[] possibleMoves);
+    public abstract Move getMove(Board board, ArrayList<Move> possibleMoves);
 
     @Override
     public void accept(UIVisitor visitor) {

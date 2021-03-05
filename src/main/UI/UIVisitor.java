@@ -1,6 +1,7 @@
 package main.UI;
 
 import main.Board;
+import main.Massage;
 import main.Move;
 import main.gamePieces.King;
 import main.gamePieces.Pawn;
@@ -21,4 +22,5 @@ public interface UIVisitor {
     void visit(ModeSelectMenu modeSelectMenu);
     void visit(Move move);
     void visit(AbstractPlayer player);
+    void visit(Massage massage);
 }

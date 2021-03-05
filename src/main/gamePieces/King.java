@@ -1,11 +1,11 @@
 package main.gamePieces;
 
+import main.UI.UIVisitor;
 import main.consts.PlayerColor;
 
 import java.util.ArrayList;
 import java.awt.Point;
 
-// TODO consider Overriding "accept"
 public class King extends Pawn {
 
     public King(PlayerColor color) {
@@ -20,7 +20,7 @@ public class King extends Pawn {
         p1 = topLeft(location);
         p2 = topRight(location);
         p3 = bottomLeft(location);
-        p4 = bottomLeft(location);
+        p4 = bottomRight(location);
 
         if(inFrame(p1, limit)) {
             moves.add(p1);
@@ -36,5 +36,10 @@ public class King extends Pawn {
         }
 
         return moves;
+    }
+
+    @Override
+    public void accept(UIVisitor visitor) {
+        visitor.visit(this);
     }
 }
