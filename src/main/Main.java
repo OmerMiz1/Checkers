@@ -20,7 +20,7 @@ public class Main {
         // TODO read input from user
 
         // MOCKS:
-        String[] names = {"shon", "omer"};
+        String[] names = {"Shon", "Omer"};
         PlayerType[] types = {PlayerType.HUMAN, PlayerType.COMPUTER_EASY};
 
         UIVisitor printer = new ConsolePrinter();

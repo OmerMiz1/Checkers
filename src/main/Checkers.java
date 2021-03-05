@@ -2,7 +2,6 @@ package main;
 
 import main.UI.UIVisitor;
 import main.consts.PlayerColor;
-import main.gamePieces.GamePiece;
 import main.logic.ILogic;
 import main.players.AbstractPlayer;
 
@@ -76,12 +75,7 @@ public class Checkers {
         }
         winnerMassage.accept(visitor);
 
-
-
-
     }
-
-
 
     public ArrayList<Move> getPossibleMoves(PlayerColor color) {
         ArrayList<Move> moves;
