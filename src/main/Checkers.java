@@ -45,7 +45,7 @@ public class Checkers {
 
 
             // select Move
-            Move selectMove =  curPlayer.getMove(board, moves);
+            Move selectMove =  curPlayer.getMove(board, moves, visitor);
 
             curPlayer.accept(visitor);
             Massage performedMassage = new Massage("performed the move:\n");

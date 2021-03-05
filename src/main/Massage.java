@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class Massage implements UIObject {
     private String text;
 
-    Massage(String text) {
+    public Massage(String text) {
         this.text = text;
     }
 

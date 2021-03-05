@@ -13,7 +13,7 @@ public abstract class AbstractPlayer implements UIObject {
     public PlayerColor color = null;
     int moveTime = 0;
 
-    public abstract Move getMove(Board board, ArrayList<Move> possibleMoves);
+    public abstract Move getMove(Board board, ArrayList<Move> possibleMoves, UIVisitor visitor);
 
     @Override
     public void accept(UIVisitor visitor) {

@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public class ComputerPlayer extends AbstractPlayer {
     @Override
-    public Move getMove(Board board, ArrayList<Move> possibleMoves) {
+    public Move getMove(Board board, ArrayList<Move> possibleMoves, UIVisitor visitor) {
         int max = possibleMoves.size();
         int indexMove = (int)(Math.random() * max);
         return possibleMoves.get(indexMove);
