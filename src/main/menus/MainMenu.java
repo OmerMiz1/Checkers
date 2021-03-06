@@ -14,13 +14,10 @@ public class MainMenu implements IMenu {
         Stats,
         Exit
     }
-    private String header;
     private ArrayList<String> options;
     private Option selectedOption = Option.None;
 
     public MainMenu() {
-        header = "Checkers - Main Menu";
-
         options = new ArrayList<>();
         options.add("Start Game");
         options.add("Statistics");
@@ -28,17 +25,7 @@ public class MainMenu implements IMenu {
     }
 
     @Override
-    public void showMenu(UIPrinter printer) {
-        accept(printer);
-    }
-
-    @Override
-    public void readInput(UIScanner scanner) {
-        accept(scanner);
-    }
-
-    @Override
-    public MyRunnable execute() {
+    public MyRunnable apply() {
         switch (selectedOption) {
             case StartGame:
                 return new NewGameMenu();
@@ -53,7 +40,7 @@ public class MainMenu implements IMenu {
 
     @Override
     public boolean isValidInput() {
-        return 0 <= selectedOption.ordinal() && selectedOption.ordinal() < Option.values().length;
+        return 0 < selectedOption.ordinal() && selectedOption.ordinal() < Option.values().length;
     }
 
     @Override
@@ -66,23 +53,10 @@ public class MainMenu implements IMenu {
     }
 
     public String getHeader() {
-        return header;
+        return "Checkers - Main Menu";
     }
 
     public ArrayList<String> getOptions() {
         return options;
     }
-
-//    @Override
-//    public IMenu runOption(Integer option) {
-//        Option opt = Option.values()[option];
-//        switch (opt) {
-//            case StartGame:
-//                return new NewGameMenu();
-//            case Stats:
-//                return null; // TODO should be "stats menu"
-//            case Exit:
-//                return null;
-//        }
-//    }
 }

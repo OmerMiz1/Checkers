@@ -70,14 +70,14 @@ public class Classic implements ILogic {
 
         // Pawn & Last Row --> Promote
         if(piece instanceof Pawn && isLastRow(piece, move.dst.x, board.getSize())) {
-            board.set(move.dst, new King(piece.getColor()));
+            promote(board, move.dst);
         }
     }
 
     @Override
     public PlayerColor getWinner(Board board) {
         if(board.getRedPiecesCount() > 0 && board.getWhitePiecesCount() > 0) { // NONE
-            return PlayerColor.TIE;
+            return PlayerColor.TIE ;
         } else if (board.getRedPiecesCount() > 0) {
             return PlayerColor.RED;
         } else {
@@ -103,5 +103,9 @@ public class Classic implements ILogic {
     private boolean isLastRow(GamePiece piece, int row, int boardSize) {
         int lastRow = (piece.getColor() == PlayerColor.RED) ? 0 : boardSize-1;
         return row == lastRow;
+    }
+
+    protected void promote(Board board, Point p) {
+        board.set(p, new King(board.at(p).getColor()));
     }
 }

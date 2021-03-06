@@ -1,7 +1,6 @@
 package main.gamePieces;
 
 import main.UI.UIObject;
-import main.UI.UIVisitor;
 import main.consts.PlayerColor;
 
 import java.awt.Point;

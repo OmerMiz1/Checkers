@@ -5,7 +5,7 @@ import main.consts.GameType;
 public class BuilderFactory {
 
     // TODO: cond for each builder type
-    public LogicBuilder checkersBuilder(GameType gameType) {
+    public LogicBuilder createLogicBuilder(GameType gameType) {
         switch (gameType) {
             case CLASSIC:
                 return new ClassicBuilder();

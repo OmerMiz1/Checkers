@@ -64,12 +64,12 @@ public class ConsolePrinter extends UIPrinter {
 
     @Override
     public void visit(TurkishKing turkishKing) {
-        printPiece(turkishKing.getColor(), "TK");
+        printPiece(turkishKing.getColor(), "K");
     }
 
     @Override
     public void visit(MainMenu mainMenu) {
-        Message msg = new Message(mainMenu.getHeader() + "\n\n");
+        Message msg = new Message(String.format("\n%s\n", mainMenu.getHeader()));
         ArrayList<String> options = mainMenu.getOptions();
 
         msg.accept(this);
@@ -80,7 +80,7 @@ public class ConsolePrinter extends UIPrinter {
 
     @Override
     public void visit(NewGameMenu newGameMenu) {
-        Message msg = new Message(newGameMenu.getHeader() + "\n\n");
+        Message msg = new Message(String.format("\n%s\n", newGameMenu.getHeader()));
         msg.accept(this);
     }
 
@@ -98,11 +98,6 @@ public class ConsolePrinter extends UIPrinter {
             visit(move);
             i++;
         }
-    }
-
-    @Override
-    public void visit(AbstractPlayer player) {
-
     }
 
     @Override

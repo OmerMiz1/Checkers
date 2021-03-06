@@ -29,7 +29,7 @@ public class HumanPlayer extends AbstractPlayer {
         return selectedOption;
     }
 
-    public void setSelectedMove(int selectedOption) {
+    public void setSelectedOption(int selectedOption) {
         this.selectedOption = selectedOption;
     }
 }

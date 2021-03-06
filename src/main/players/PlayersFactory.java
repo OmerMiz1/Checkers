@@ -5,8 +5,6 @@ import main.consts.PlayerColor;
 import main.consts.PlayerType;
 
 public class PlayersFactory {
-
-    // TODO add parameter main.consts (enum)
     public ArrayList<AbstractPlayer> generatePlayers(String[] names, PlayerType[] types) {
         ArrayList<AbstractPlayer> players = new ArrayList<>();
         AbstractPlayer player1, player2;

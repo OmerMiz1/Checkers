@@ -4,12 +4,9 @@ import main.Board;
 import main.Move;
 import main.Moves;
 import main.UI.UIObject;
-import main.UI.UIPrinter;
 import main.UI.UIScanner;
 import main.UI.UIVisitor;
 import main.consts.PlayerColor;
-
-import java.util.ArrayList;
 
 public abstract class AbstractPlayer implements UIObject {
     protected String name;

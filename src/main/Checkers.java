@@ -31,22 +31,22 @@ public class Checkers implements MyRunnable {
         Moves moves;
 
         while(logic.isRunning(board)) {
-            board.accept(printer);
+            printer.print(board);
             moves = new Moves(getPossibleMoves(curTurn));
             AbstractPlayer curPlayer = players.get(curTurn.ordinal());
-            curPlayer.accept(printer);
+            printer.print(curPlayer);
             Message chooseMessage = new Message("choose a move:\n");
-            chooseMessage.accept(printer);
+            printer.print(chooseMessage);
+            printer.print(moves);
 
-            moves.accept(printer);
-
-            // select Move
+            // select Move fixme: scanner.scan(curPlayer)
+//            scanner.scan(curPlayer);
             Move selectedMove = curPlayer.getMove(board, moves, scanner);
 
-            curPlayer.accept(printer);
-            Message performedMassage = new Message("performed move:\n");
-            performedMassage.accept(printer);
-            selectedMove.accept(printer);
+            printer.print(curPlayer);
+            Message performedMessage = new Message("performed move:\n");
+            printer.print(performedMessage);
+            printer.print(selectedMove);
 
             logic.performMove(board, selectedMove);
             moves.clearMoves();
@@ -57,25 +57,21 @@ public class Checkers implements MyRunnable {
         return new MainMenu();
     }
 
-    public void announceWinner(UIVisitor visitor) {
-        // TODO The UIPrinter should do the printing to user,
-        //  checkers should only generate the message (?!)
-        //  Maybe just add "Game Over" menu that does that?
-        PlayerColor winner = logic.getWinner(board);
-        Message winnerMassage;
-        if (winner == PlayerColor.TIE)
-            winnerMassage = new Message("The result of this mach is Tie\n");
+    private void announceWinner(UIPrinter printer) {
+        Message msg;
+
+        PlayerColor winnerColor = logic.getWinner(board);
+        if (winnerColor == PlayerColor.TIE)
+            msg = new Message("Match ended in tie\n");
         else {
-            AbstractPlayer winnerPlayer = players.get(winner.ordinal());
-            winnerMassage = new Message("Is The WInner\n");
-            winnerPlayer.accept(visitor);
-
+            AbstractPlayer winner = players.get(winnerColor.ordinal());
+            msg = new Message("is The Winner\n");
+            printer.print(winner);
         }
-        winnerMassage.accept(visitor);
-
+        printer.print(msg);
     }
 
-    public ArrayList<Move> getPossibleMoves(PlayerColor color) {
+    private ArrayList<Move> getPossibleMoves(PlayerColor color) {
         ArrayList<Move> moves;
         moves = board.getAllMoves(color);
         return logic.filterMoves(board, moves);

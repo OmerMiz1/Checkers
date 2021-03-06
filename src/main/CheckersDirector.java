@@ -8,6 +8,10 @@ import main.players.PlayersFactory;
 public class CheckersDirector{
     private LogicBuilder builder;
 
+    public CheckersDirector(LogicBuilder builder) {
+        this.builder = builder;
+    }
+
     public void setBuilder(LogicBuilder builder) {
         this.builder = builder;
     }
@@ -17,7 +21,6 @@ public class CheckersDirector{
     }
 
     public void constructGame(String[] names, PlayerType[] types) {
-        // todo Maybe take out so he does not contain the checkerModeFactory
         PlayersFactory playersFactory = new PlayersFactory();
         builder.setPlayers(playersFactory.generatePlayers(names, types));
         builder.buildBoard();

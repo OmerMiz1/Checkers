@@ -5,4 +5,6 @@ public abstract class UIPrinter implements UIVisitor {
     public void print(UIObject object) {
         object.accept(this);
     }
+
+//    abstract void printMessage(String msg);
 }

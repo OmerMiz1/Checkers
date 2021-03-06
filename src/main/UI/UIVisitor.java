@@ -25,7 +25,6 @@ public interface UIVisitor {
     void visit(NewGameMenu newGameMenu);
     void visit(Move move);
     void visit(Moves moves);
-    void visit(AbstractPlayer player);
     void visit(HumanPlayer player);
     void visit(ComputerPlayer player);
     void visit(Message massage);

@@ -3,14 +3,13 @@ package main.logic;
 import main.Board;
 import main.Checkers;
 import main.players.AbstractPlayer;
-
 import java.util.ArrayList;
 
 public abstract class LogicBuilder {
     private Checkers game;
     protected Board board;
     protected ILogic logic;
-    private ArrayList<AbstractPlayer> players;
+    protected ArrayList<AbstractPlayer> players;
 
     public Checkers getGame(){
         return this.game;

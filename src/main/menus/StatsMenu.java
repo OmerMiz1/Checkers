@@ -8,18 +8,13 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 public class StatsMenu implements IMenu {
     @Override
-    public void showMenu(UIPrinter printer) {
+    public MyRunnable apply() {
         throw new NotImplementedException();
     }
 
     @Override
-    public void readInput(UIScanner scanner) {
-        throw new NotImplementedException();
-    }
-
-    @Override
-    public MyRunnable execute() {
-        throw new NotImplementedException();
+    public String getHeader() {
+        return "Checkers - Statistics";
     }
 
     @Override
@@ -29,6 +24,6 @@ public class StatsMenu implements IMenu {
 
     @Override
     public void accept(UIVisitor visitor) {
-        throw new NotImplementedException();
+        visitor.visit(this);
     }
 }

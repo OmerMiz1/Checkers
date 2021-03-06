@@ -1,6 +1,5 @@
 package main;// https://github.com/AshishPrasad/Checkers/blob/master/checkers/Board.java
 
-import com.sun.xml.internal.bind.v2.runtime.reflect.opt.Const;
 import main.UI.UIObject;
 import main.UI.UIVisitor;
 import main.consts.PlayerColor;
@@ -11,10 +10,8 @@ import java.util.ArrayList;
 
 public class Board implements UIObject {
     private int size;
-
     private int redPiecesCount;
     private int whitePiecesCount;
-
     private GamePiece[][] board;
 
     public Board(int size) {
@@ -97,10 +94,4 @@ public class Board implements UIObject {
     public void accept(UIVisitor visitor) {
         visitor.visit(this);
     }
-
-//
-//    @Override
-//    public void accept(UIVisitor visitor) {
-//        visitor.visit(this);
-//    }
 }

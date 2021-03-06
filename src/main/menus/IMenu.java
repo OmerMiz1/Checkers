@@ -5,24 +5,19 @@ import main.UI.UIObject;
 import main.UI.UIPrinter;
 import main.UI.UIScanner;
 
-import java.util.Map;
-import java.util.function.Function;
-
 public interface IMenu extends UIObject, MyRunnable {
-//    String header();
-//    Map<Integer, String> options();
-//    Function select(Enum option);
-    void showMenu(UIPrinter printer);
-    void readInput(UIScanner scanner);
-    MyRunnable execute();
+    String getHeader();
     boolean isValidInput();
+    MyRunnable apply();
 
     @Override
     default MyRunnable run(UIPrinter printer, UIScanner scanner) {
-        showMenu(printer);
-        readInput(scanner);
+        printer.print(this);
+        scanner.scan(this);
+
         if(isValidInput())
-            return execute();
+            return apply();
+
         return this;
     }
 }

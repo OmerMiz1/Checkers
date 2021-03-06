@@ -3,8 +3,6 @@ package main.menus;
 import main.Checkers;
 import main.CheckersDirector;
 import main.MyRunnable;
-import main.UI.UIPrinter;
-import main.UI.UIScanner;
 import main.UI.UIVisitor;
 import main.consts.GameType;
 import main.consts.PlayerType;
@@ -14,36 +12,35 @@ import main.logic.LogicBuilder;
 import java.util.ArrayList;
 
 public class NewGameMenu implements IMenu {
-    private String header;
     private String[] playerNames;
     private PlayerType[] playerTypes;
     private GameType gameType;
+    private ArrayList<String> playerTypeOptions;
+    private ArrayList<String> gameTypeOptions;
 
     public NewGameMenu() {
-        header = "Checkers - New Game";
         playerNames = new String[2];
         playerTypes = new PlayerType[2];
+
+        playerTypeOptions = new ArrayList<>();
+        playerTypeOptions.add("Human");
+        playerTypeOptions.add("Computer Easy");
+        playerTypeOptions.add("Computer Hard");
+
+        gameTypeOptions = new ArrayList<>();
+        gameTypeOptions.add("Classic");
+        gameTypeOptions.add("Turkish");
+        gameTypeOptions.add("Burns");
     }
 
     @Override
-    public void showMenu(UIPrinter printer) {
-        accept(printer);
-    }
-
-    @Override
-    public void readInput(UIScanner scanner) {
-        accept(scanner);
-    }
-
-    @Override
-    public MyRunnable execute() {
+    public MyRunnable apply() {
         // Creating a factory that prepares builders
         BuilderFactory checkersBuilderFactory = new BuilderFactory();
-        LogicBuilder checkersBuilder = checkersBuilderFactory.checkersBuilder(gameType);
+        LogicBuilder logicBuilder = checkersBuilderFactory.createLogicBuilder(gameType);
 
         // Creating a main.CheckersDirector and than create game (checkers)
-        CheckersDirector checkersDirector = new CheckersDirector();
-        checkersDirector.setBuilder(checkersBuilder);
+        CheckersDirector checkersDirector = new CheckersDirector(logicBuilder);
         checkersDirector.constructGame(playerNames, playerTypes);
         Checkers checkers = checkersDirector.getGame();
 
@@ -61,9 +58,8 @@ public class NewGameMenu implements IMenu {
     }
 
     public String getHeader() {
-        return header;
+        return "Checkers - New Game";
     }
-
 
     public void setPlayerName(String name, int playerNum) {
         if(0 <= playerNum && playerNum < playerNames.length) {
@@ -79,5 +75,13 @@ public class NewGameMenu implements IMenu {
 
     public void setGameType(GameType gameType) {
         this.gameType = gameType;
+    }
+
+    public ArrayList<String> getPlayerTypeOptions() {
+        return playerTypeOptions;
+    }
+
+    public ArrayList<String> getGameTypeOptions() {
+        return gameTypeOptions;
     }
 }

@@ -5,11 +5,8 @@ import main.Move;
 import main.Moves;
 import main.UI.UIScanner;
 import main.UI.UIVisitor;
-import main.consts.PlayerType;
 
-import java.util.ArrayList;
-
-public class ComputerPlayer extends AbstractPlayer {
+ public class ComputerPlayer extends AbstractPlayer {
     @Override
     public void accept(UIVisitor visitor) {
         visitor.visit(this);
