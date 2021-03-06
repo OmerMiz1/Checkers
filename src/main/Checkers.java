@@ -26,11 +26,11 @@ public class Checkers {
     }
 
     public void run(UIVisitor visitor) {
-        ArrayList<Move> moves;
+        Moves moves;
 
         while(logic.isRunning(board)) {
             board.accept(visitor);
-            moves = getPossibleMoves(curTurn);
+            moves = new Moves(getPossibleMoves(curTurn));
             AbstractPlayer curPlayer = players.get(curTurn.ordinal());
             curPlayer.accept(visitor);
             Massage chooseMassage = new Massage("you must choose one of the following moves:\n");
@@ -38,9 +38,7 @@ public class Checkers {
 
 
             // TODO need add group of moves for get index too..
-            for (Move move : moves) {
-                move.accept(visitor);
-            }
+            moves.accept(visitor);
 
 
             // select Move
@@ -52,7 +50,7 @@ public class Checkers {
             selectMove.accept(visitor);
 
             logic.performMove(board, selectMove);
-            moves.clear();
+            moves.clearMoves();
             changeTurn();
         }
 

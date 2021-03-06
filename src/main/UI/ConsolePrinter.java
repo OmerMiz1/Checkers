@@ -3,6 +3,7 @@ package main.UI;
 import main.Board;
 import main.Massage;
 import main.Move;
+import main.Moves;
 import main.consts.PlayerColor;
 import main.gamePieces.King;
 import main.gamePieces.Pawn;
@@ -13,6 +14,7 @@ import main.players.AbstractPlayer;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.awt.*;
+import java.util.ArrayList;
 
 public class ConsolePrinter extends UIPrinter {
     private static final String ENDC = "\u001B[0m";
@@ -75,6 +77,17 @@ public class ConsolePrinter extends UIPrinter {
     @Override
     public void visit(Move move) {
         System.out.printf("\tMove from %s to %s\n", pointToString(move.getSrc()), pointToString(move.dst));
+    }
+
+    @Override
+    public void visit(Moves moves) {
+        int i=1;
+        ArrayList<Move> allMoves = moves.getMoves();
+        for(Move move: allMoves) {
+            System.out.printf("%s)", i);
+            visit(move);
+            i++;
+        }
     }
 
     @Override

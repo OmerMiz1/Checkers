@@ -3,6 +3,7 @@ package main.UI;
 import main.Board;
 import main.Massage;
 import main.Move;
+import main.Moves;
 import main.gamePieces.King;
 import main.gamePieces.Pawn;
 import main.gamePieces.TurkishKing;
@@ -44,6 +45,11 @@ public class ConsoleScanner extends UIScanner {
     @Override
     public void visit(Move move) {
         System.out.println();
+    }
+
+    @Override
+    public void visit(Moves moves) {
+
     }
 
 
