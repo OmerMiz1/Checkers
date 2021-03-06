@@ -1,7 +1,7 @@
 package main.UI;
 
 import main.Board;
-import main.Massage;
+import main.Message;
 import main.Move;
 import main.Moves;
 import main.consts.PlayerColor;
@@ -9,9 +9,10 @@ import main.gamePieces.King;
 import main.gamePieces.Pawn;
 import main.gamePieces.TurkishKing;
 import main.menus.MainMenu;
-import main.menus.ModeSelectMenu;
+import main.menus.NewGameMenu;
 import main.players.AbstractPlayer;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+import main.players.ComputerPlayer;
+import main.players.HumanPlayer;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -25,6 +26,8 @@ public class ConsolePrinter extends UIPrinter {
 
     @Override
     public void visit(Board board) {
+        // Taken from:
+        // https://stackoverflow.com/questions/36076999/print-2d-array-to-console-in-board-format
         if(ROW_SEPERATOR == null) {
             initRowSeperator(board.getSize());
         }
@@ -66,12 +69,19 @@ public class ConsolePrinter extends UIPrinter {
 
     @Override
     public void visit(MainMenu mainMenu) {
-        throw new NotImplementedException();
+        Message msg = new Message(mainMenu.getHeader() + "\n\n");
+        ArrayList<String> options = mainMenu.getOptions();
+
+        msg.accept(this);
+        for (int i = 0; i < options.size() ; ++i) {
+            System.out.printf("%d) %s\n", i+1, options.get(i));
+        }
     }
 
     @Override
-    public void visit(ModeSelectMenu modeSelectMenu) {
-        throw new NotImplementedException();
+    public void visit(NewGameMenu newGameMenu) {
+        Message msg = new Message(newGameMenu.getHeader() + "\n\n");
+        msg.accept(this);
     }
 
     @Override
@@ -92,11 +102,21 @@ public class ConsolePrinter extends UIPrinter {
 
     @Override
     public void visit(AbstractPlayer player) {
-        System.out.printf("%s (%s) ",player.name, player.color );
+
     }
 
     @Override
-    public void visit(Massage massage) {
+    public void visit(HumanPlayer player) {
+        System.out.printf("%s (%s) ", player.getName(), player.getColor());
+    }
+
+    @Override
+    public void visit(ComputerPlayer player) {
+        System.out.printf("%s (%s) ",player.getName(), player.getColor());
+    }
+
+    @Override
+    public void visit(Message massage) {
         System.out.print(massage.getText());
     }
 

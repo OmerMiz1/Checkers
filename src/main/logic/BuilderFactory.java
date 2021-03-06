@@ -1,18 +1,20 @@
 package main.logic;
 
+import main.consts.GameType;
+
 public class BuilderFactory {
 
     // TODO: cond for each builder type
-    public LogicBuilder checkersBuilder(String builderName) {
-        // todo add ifs...
-        if (builderName.equals("classic_builder")) {
-            return new ClassicBuilder();
-        } else if (builderName.equals("burns_builder")) {
-            return new BurnsBuilder();
-        } else if (builderName.equals("turkish_builder")) {
-            return new TurkishBuilder();
-        } else {
-            return null;
+    public LogicBuilder checkersBuilder(GameType gameType) {
+        switch (gameType) {
+            case CLASSIC:
+                return new ClassicBuilder();
+            case TURKISH:
+                return new TurkishBuilder();
+            case BURNS:
+                return new BurnsBuilder();
+            default:
+                return null;
         }
     }
 }

@@ -19,7 +19,7 @@ public class CheckersDirector{
     public void constructGame(String[] names, PlayerType[] types) {
         // todo Maybe take out so he does not contain the checkerModeFactory
         PlayersFactory playersFactory = new PlayersFactory();
-        builder.setPlayers(playersFactory.generatePlayers(names, types)); // TODO add parameters <type1, type2>
+        builder.setPlayers(playersFactory.generatePlayers(names, types));
         builder.buildBoard();
         builder.buildLogic();
         builder.createNewGame();

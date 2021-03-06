@@ -1,18 +1,19 @@
 package main;
 
+import main.UI.UIPrinter;
+import main.UI.UIScanner;
 import main.UI.UIVisitor;
 import main.consts.PlayerColor;
 import main.logic.ILogic;
+import main.menus.MainMenu;
 import main.players.AbstractPlayer;
-
 import java.util.ArrayList;
 
-public class Checkers {
+public class Checkers implements MyRunnable {
     public Board board;
     private ILogic logic;
     private ArrayList<AbstractPlayer> players;
     private PlayerColor curTurn;
-
 
     public Checkers(Board board, ILogic logic, ArrayList<AbstractPlayer> players) {
         this.board = board;
@@ -25,36 +26,35 @@ public class Checkers {
         curTurn = (curTurn == PlayerColor.WHITE) ? PlayerColor.RED : PlayerColor.WHITE;
     }
 
-    public void run(UIVisitor visitor) {
+    @Override
+    public MyRunnable run(UIPrinter printer, UIScanner scanner) {
         Moves moves;
 
         while(logic.isRunning(board)) {
-            board.accept(visitor);
+            board.accept(printer);
             moves = new Moves(getPossibleMoves(curTurn));
             AbstractPlayer curPlayer = players.get(curTurn.ordinal());
-            curPlayer.accept(visitor);
-            Massage chooseMassage = new Massage("you must choose one of the following moves:\n");
-            chooseMassage.accept(visitor);
+            curPlayer.accept(printer);
+            Message chooseMessage = new Message("choose a move:\n");
+            chooseMessage.accept(printer);
 
-
-            // TODO need add group of moves for get index too..
-            moves.accept(visitor);
-
+            moves.accept(printer);
 
             // select Move
-            Move selectMove =  curPlayer.getMove(board, moves, visitor);
+            Move selectedMove = curPlayer.getMove(board, moves, scanner);
 
-            curPlayer.accept(visitor);
-            Massage performedMassage = new Massage("performed the move:\n");
-            performedMassage.accept(visitor);
-            selectMove.accept(visitor);
+            curPlayer.accept(printer);
+            Message performedMassage = new Message("performed move:\n");
+            performedMassage.accept(printer);
+            selectedMove.accept(printer);
 
-            logic.performMove(board, selectMove);
+            logic.performMove(board, selectedMove);
             moves.clearMoves();
             changeTurn();
         }
 
-        announceWinner(visitor);
+        announceWinner(printer);
+        return new MainMenu();
     }
 
     public void announceWinner(UIVisitor visitor) {
@@ -62,12 +62,12 @@ public class Checkers {
         //  checkers should only generate the message (?!)
         //  Maybe just add "Game Over" menu that does that?
         PlayerColor winner = logic.getWinner(board);
-        Massage winnerMassage;
+        Message winnerMassage;
         if (winner == PlayerColor.TIE)
-            winnerMassage = new Massage("The result of this mach is Tie\n");
+            winnerMassage = new Message("The result of this mach is Tie\n");
         else {
             AbstractPlayer winnerPlayer = players.get(winner.ordinal());
-            winnerMassage = new Massage("Is The WInner\n");
+            winnerMassage = new Message("Is The WInner\n");
             winnerPlayer.accept(visitor);
 
         }

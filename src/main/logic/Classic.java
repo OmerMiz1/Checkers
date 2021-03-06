@@ -38,7 +38,7 @@ public class Classic implements ILogic {
                     continue;
 
                 if(board.at(newDst) == null || board.at(newDst).getColor() == null) { // Jump loc is empty
-                    move.isJump.add(move.dst);
+                    move.jumps.add(move.dst);
                     move.dst = newDst;
                     hasJumps = true;
                     filteredMoves.add(move);
@@ -48,7 +48,7 @@ public class Classic implements ILogic {
         }
 
         if(hasJumps) { // Remove non-jumps options
-            filteredMoves.removeIf(move -> move.isJump.isEmpty());
+            filteredMoves.removeIf(move -> move.jumps.isEmpty());
         }
 
         return filteredMoves;
@@ -58,8 +58,8 @@ public class Classic implements ILogic {
     public void performMove(Board board, Move move) {
         GamePiece piece = board.at(move.getSrc());
 
-        if(!move.isJump.isEmpty()) {
-            for(Point point: move.isJump)
+        if(!move.jumps.isEmpty()) {
+            for(Point point: move.jumps)
                 board.remove(point);
             movesNoJumpCount = 0;
         } else {
@@ -76,7 +76,7 @@ public class Classic implements ILogic {
 
     @Override
     public PlayerColor getWinner(Board board) {
-        if(board.getRedPiecesCount() > 0 && board.getWhitePiecesCount() > 0) { // TIE
+        if(board.getRedPiecesCount() > 0 && board.getWhitePiecesCount() > 0) { // NONE
             return PlayerColor.TIE;
         } else if (board.getRedPiecesCount() > 0) {
             return PlayerColor.RED;

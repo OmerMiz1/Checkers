@@ -6,10 +6,10 @@ import main.UI.UIVisitor;
 import java.awt.*;
 import java.util.ArrayList;
 
-public class Massage implements UIObject {
+public class Message implements UIObject {
     private String text;
 
-    public Massage(String text) {
+    public Message(String text) {
         this.text = text;
     }
 

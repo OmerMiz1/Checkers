@@ -2,7 +2,6 @@ package main.logic;
 
 import main.Board;
 import main.consts.PlayerColor;
-import main.gamePieces.King;
 import main.gamePieces.Pawn;
 
 public class ClassicBuilder extends LogicBuilder {
@@ -25,8 +24,12 @@ public class ClassicBuilder extends LogicBuilder {
             //Switch starting color for next row
              isDarkCell = !isDarkCell;
         }
+
         //todo check Multi-jump
 //        gameBoard.set(4,2,new Pawn(PlayerColor.WHITE));
+//        gameBoard.set(4,0,new Pawn(PlayerColor.WHITE));
+//        gameBoard.set(4,4,new Pawn(PlayerColor.WHITE));
+//        gameBoard.set(4,6,new Pawn(PlayerColor.WHITE));
 //        gameBoard.set(1,5,null);
 
 
@@ -41,11 +44,8 @@ public class ClassicBuilder extends LogicBuilder {
             }
 
             //Switch starting color for next row
-             isDarkCell = !isDarkCell;
+            isDarkCell = !isDarkCell;
         }
-
-
-
 
         gameBoard.setRedPiecesCount(12);
         gameBoard.setWhitePiecesCount(12);

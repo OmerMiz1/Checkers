@@ -1,5 +1,6 @@
 package main.gamePieces;
 
+import main.UI.UIVisitor;
 import main.consts.PlayerColor;
 
 import java.awt.*;
@@ -36,5 +37,10 @@ public class TurkishKing extends King {
         }
 
         return moves;
+    }
+
+    @Override
+    public void accept(UIVisitor visitor) {
+        visitor.visit(this);
     }
 }

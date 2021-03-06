@@ -4,5 +4,4 @@ public enum PlayerColor {
     RED,
     WHITE,
     TIE
-
 }

@@ -1,54 +1,59 @@
 package main.menus;
 
+import main.MyRunnable;
+import main.UI.UIPrinter;
+import main.UI.UIScanner;
 import main.UI.UIVisitor;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
 
 public class MainMenu implements IMenu {
-
-
     private enum Option {
+        None,
         StartGame,
         Stats,
-        Exit;
+        Exit
     }
-    private static String header;
-    private static String footer;
-    private Map<Option, String> options;
+    private String header;
+    private ArrayList<String> options;
+    private Option selectedOption = Option.None;
+
     public MainMenu() {
-        options = new HashMap<>();
-        options.put(Option.StartGame, "Start Game");
-        options.put(Option.Stats, "Statistics");
-        options.put(Option.Exit, "Exit");
-
         header = "Checkers - Main Menu";
-        footer = "Enter Option..";
-    }
 
-
-    @Override
-    public void showMenu() {
-
-    }
-    @Override
-    public void readInput() {
-
+        options = new ArrayList<>();
+        options.add("Start Game");
+        options.add("Statistics");
+        options.add("Exit");
     }
 
     @Override
-    public void execute() {
-
+    public void showMenu(UIPrinter printer) {
+        accept(printer);
     }
 
     @Override
-    public boolean validInput() {
-        return true;
+    public void readInput(UIScanner scanner) {
+        accept(scanner);
     }
 
     @Override
-    public boolean isRunning() {
-        return true;
+    public MyRunnable execute() {
+        switch (selectedOption) {
+            case StartGame:
+                return new NewGameMenu();
+            case Stats:
+                return new StatsMenu();
+            case Exit:
+                return null;
+            default:
+                return this;
+        }
+    }
+
+    @Override
+    public boolean isValidInput() {
+        return 0 <= selectedOption.ordinal() && selectedOption.ordinal() < Option.values().length;
     }
 
     @Override
@@ -56,12 +61,24 @@ public class MainMenu implements IMenu {
         visitor.visit(this);
     }
 
+    public void setSelectedOption(int option) {
+        this.selectedOption = Option.values()[option];
+    }
+
+    public String getHeader() {
+        return header;
+    }
+
+    public ArrayList<String> getOptions() {
+        return options;
+    }
+
 //    @Override
 //    public IMenu runOption(Integer option) {
 //        Option opt = Option.values()[option];
 //        switch (opt) {
 //            case StartGame:
-//                return new ModeSelectMenu();
+//                return new NewGameMenu();
 //            case Stats:
 //                return null; // TODO should be "stats menu"
 //            case Exit:
