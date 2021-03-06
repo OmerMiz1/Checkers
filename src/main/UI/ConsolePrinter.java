@@ -10,7 +10,6 @@ import main.gamePieces.Pawn;
 import main.gamePieces.TurkishKing;
 import main.menus.MainMenu;
 import main.menus.NewGameMenu;
-import main.players.AbstractPlayer;
 import main.players.ComputerPlayer;
 import main.players.HumanPlayer;
 
@@ -20,21 +19,20 @@ import java.util.ArrayList;
 public class ConsolePrinter extends UIPrinter {
     private static final String ENDC = "\u001B[0m";
     private static final String RED = "\u001B[31m";
-    private static final String WHITE_BG = "\u001B[47m";
 
-    private static String ROW_SEPERATOR = null;
+    private static String ROW_SEPARATOR = null;
 
     @Override
     public void visit(Board board) {
         // Taken from:
         // https://stackoverflow.com/questions/36076999/print-2d-array-to-console-in-board-format
-        if(ROW_SEPERATOR == null) {
-            initRowSeperator(board.getSize());
+        if(ROW_SEPARATOR == null) {
+            initRowSeparator(board.getSize());
         }
         System.out.println();
         printColNumbers(board.getSize());
         for(int row = 0; row < board.getSize(); ++row){
-            System.out.println(ROW_SEPERATOR);
+            System.out.println(ROW_SEPARATOR);
             for(int col = 0 ; col < board.getSize() ; ++col) {
                 if(col == 0) {
                     System.out.printf("%c", row + 'a');
@@ -49,7 +47,7 @@ public class ConsolePrinter extends UIPrinter {
             }
             System.out.println(" |");
         }
-        System.out.println(ROW_SEPERATOR);
+        System.out.println(ROW_SEPARATOR);
     }
 
     @Override
@@ -125,7 +123,7 @@ public class ConsolePrinter extends UIPrinter {
         }
         System.out.print(pieceStr);
     }
-    private void initRowSeperator(int size) {
+    private void initRowSeparator(int size) {
         StringBuilder sb = new StringBuilder();
         sb.append("  ");
         for (int i = 0; i < size*4 + 1; i++) {
@@ -136,7 +134,7 @@ public class ConsolePrinter extends UIPrinter {
             }
         }
         sb.append(" ");
-        ROW_SEPERATOR = sb.toString();
+        ROW_SEPARATOR = sb.toString();
     }
     private void printColNumbers(int cols) {
         System.out.print(" ");
